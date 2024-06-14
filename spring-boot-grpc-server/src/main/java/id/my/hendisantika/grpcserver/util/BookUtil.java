@@ -1,5 +1,10 @@
 package id.my.hendisantika.grpcserver.util;
 
+import id.my.hendisantika.grpcserver.rest.Book;
+
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * Created by IntelliJ IDEA.
  * Project : spring-boot-gRPC
@@ -11,4 +16,16 @@ package id.my.hendisantika.grpcserver.util;
  * To change this template use File | Settings | File Templates.
  */
 public class BookUtil {
+    public static List<Book> assignISBN(List<Book> books) {
+        List<Book> result = new LinkedList<>();
+        for (Book book : books) {
+            Book bookWithISBN = Book.newBuilder(book)
+                    .setISBN(generateISBN())
+                    .build();
+
+            result.add(bookWithISBN);
+        }
+
+        return result;
+    }
 }
