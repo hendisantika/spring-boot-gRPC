@@ -1,8 +1,14 @@
 package id.my.hendisantika.grpcserver.controller;
 
+import id.my.hendisantika.grpcserver.rest.Book;
+import id.my.hendisantika.grpcserver.util.BookUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -19,4 +25,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class BooksRestController {
 
     private final HttpMessageConverters httpMessageConverters;
+
+    @PostMapping("book")
+    public List<Book> createBooks(@RequestBody List<Book> books) {
+        books.forEach(book -> {
+            book.setISBN(BookUtil.generateISBN());
+        });
+
+        return books;
+    }
+
 }
