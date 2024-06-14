@@ -4,6 +4,7 @@ import id.my.hendisantika.grpcserver.rest.Book;
 import id.my.hendisantika.grpcserver.util.BookUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,4 +36,8 @@ public class BooksRestController {
         return books;
     }
 
+    @GetMapping()
+    public void test() {
+        httpMessageConverters.getConverters().forEach(System.out::println);
+    }
 }
